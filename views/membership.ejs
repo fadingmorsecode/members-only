@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Join the club.</h1>
+    <% if (membership === false) { %>
+    <p>Enter the password to confirm your membership.</p>
+    <form action="/membership" method="POST">
+      <label>Membership Password</label>
+      <input type="password" name="membershipPassword" />
+      <button type="submit">Submit</button>
+    </form>
+    <% } else { %>
+    <p>You are already a member</p>
+    <a href="/"></a>
+    <% } %>
+  </body>
+</html>

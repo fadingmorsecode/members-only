@@ -14,4 +14,24 @@ async function createUser(firstname, lastname, email, password) {
   return rows[0];
 }
 
-module.exports = { createUser };
+async function getUser(username) {
+  const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [
+    username,
+  ]);
+  return rows[0];
+}
+
+const getUserID = async function (userId) {
+  const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [
+    userId,
+  ]);
+  return rows[0];
+};
+
+async function setMembership(username) {
+  await pool.query('UPDATE users SET membership = true WHERE username = $1', [
+    username,
+  ]);
+}
+
+module.exports = { createUser, getUser, getUserID, setMembership };

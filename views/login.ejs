@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Account Login</h1>
+    <% if (errors && errors.length > 0) { %> <% errors.forEach((error) => { %>
+    <p><%= error.msg %></p>
+    <% }); %> <% } %>
+    <form action="/login" method="POST">
+      <label>Email</label>
+      <input type="email" id="email-login" name="emailLogin" />
+      <label>Password</label>
+      <input type="password" id="password-login" name="passwordLogin" />
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>
