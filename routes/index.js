@@ -4,9 +4,15 @@ const loginController = require('../controllers/loginController');
 const membershipController = require('../controllers/membershipController');
 const { isAuth } = require('./authMiddleware');
 const passport = require('passport');
+const { newPostControllerPost } = require('../controllers/newPostController');
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Home' });
+  let user;
+  if (req.user) {
+    user = req.user;
+  }
+  console.log(user);
+  res.render('index', { title: 'Home', user: user });
 });
 
 router.get('/register', (req, res) => {
@@ -48,5 +54,11 @@ router.get('/login-failure', (req, res) => {
 router.get('/login-success', (req, res) => {
   res.render('loginSuccess');
 });
+
+router.get('/create-post', isAuth, (req, res) => {
+  res.render('createPostForm');
+});
+
+router.post('/create-post', newPostControllerPost);
 
 module.exports = router;

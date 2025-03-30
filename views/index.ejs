@@ -7,11 +7,14 @@
   </head>
   <body>
     <h1>Home</h1>
+    <% if (!user) { %>
     <a href="/register">Register</a>
     <a href="login">Login</a>
-
-    <a href="/membership">Become a member</a>
-    <p>Already logged in?</p>
+    <% } else { %>
+    <a href="create-post">New Post</a>
     <a href="#">Posts</a>
+    <% }%> <% if (user && user.membership === false) { %>
+    <a href="/membership">Become a member</a>
+    <% } %>
   </body>
 </html>
