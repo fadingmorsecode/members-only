@@ -8,7 +8,7 @@ const { newPostControllerPost } = require('../controllers/newPostController');
 const { getAllPosts } = require('../config/queries');
 
 router.get('/', async (req, res) => {
-  let user;
+  let user = null;
   const posts = await getAllPosts();
   console.log(posts);
   if (req.user) {
