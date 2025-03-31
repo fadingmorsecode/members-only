@@ -5,8 +5,6 @@ const pool = new Pool({
 });
 
 async function createUser(firstname, lastname, email, password) {
-  console.log('yo');
-  console.log(password);
   const { rows } = await pool.query(
     'INSERT INTO users (firstname, lastname, username, password) values ($1, $2, $3, $4)',
     [firstname, lastname, email, password]
@@ -34,4 +32,12 @@ async function setMembership(username) {
   ]);
 }
 
-module.exports = { createUser, getUser, getUserID, setMembership };
+async function createPost(firstname, lastname, text) {
+  const name = `${firstname} ${lastname}`;
+  await pool.query('INSERT INTO posts (name, text) VALUES ($1, $2)', [
+    name,
+    text,
+  ]);
+}
+
+module.exports = { createUser, getUser, getUserID, setMembership, createPost };
