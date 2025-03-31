@@ -21,13 +21,13 @@
     <div>
       <% posts.forEach((post) => { %>
       <div>
-        <% if (user && user.membership) { %>
+        <% if (user && user.membership || user && user.admin === true) { %>
         <p><%= post.name %></p>
         <% } else { %>
         <p>Club Member</p>
         <% } %>
         <p><%= post.text %></p>
-        <% if (user && user.membership) { %>
+        <% if (user && user.membership || user && user.admin === true) { %>
         <p><%= post.timestamp %></p>
         <% } %>
       </div>
