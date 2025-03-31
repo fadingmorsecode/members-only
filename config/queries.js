@@ -55,6 +55,17 @@ async function deletePost(postId) {
   await pool.query('DELETE FROM posts WHERE id = $1', [postId]);
 }
 
+async function searchUsername(username) {
+  const result = await pool.query(
+    'SELECT username FROM users WHERE username = $1',
+    [username]
+  );
+  if (result.rows[0]) {
+    return result.rows[0].username;
+  }
+  return null;
+}
+
 module.exports = {
   createUser,
   getUser,
@@ -64,4 +75,5 @@ module.exports = {
   getAllPosts,
   setAdmin,
   deletePost,
+  searchUsername,
 };

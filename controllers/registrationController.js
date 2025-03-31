@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const { genPassword } = require('../lib/passwordUtils');
-const { createUser } = require('../config/queries');
+const { createUser, searchUsername } = require('../config/queries');
 
 const alphaErr = 'must only contain letters.';
 const lengthErr = 'must be between 1 and 10 characters';
@@ -50,8 +50,15 @@ exports.userRegistrationPost = [
         .render('register', { title: 'Register', errors: errors.array() });
     }
     const { fname, lname, em, pw } = req.body;
+    const searchedEmail = await searchUsername(em);
+    if (em === searchedEmail) {
+      return res.status(400).render('register', {
+        title: 'Register',
+        errors: [{ msg: 'A user with this email already exists' }],
+      });
+    }
     const hashedPassword = await genPassword(pw);
     createUser(fname, lname, em, hashedPassword);
-    res.redirect('/');
+    res.render('registrationSuccess');
   },
 ];

@@ -19,7 +19,9 @@
     <% } %>
     <h2>Posts</h2>
     <div>
-      <% posts.forEach((post) => { %>
+      <% if (posts === undefined || posts.length === 0) { %>
+      <p>Well that's embarassing. There are no posts to display yet</p>
+      <% } else { %> <% posts.forEach((post) => { %>
       <div>
         <% if (user && user.membership || user && user.admin === true) { %>
         <p><%= post.name %></p>
@@ -35,7 +37,7 @@
         </form>
         <% } %>
       </div>
-      <% }); %>
+      <% }); %> <% } %>
     </div>
     <footer>
       <% if (user && user.admin !== true) { %>
