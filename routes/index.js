@@ -6,6 +6,7 @@ const { isAuth } = require('./authMiddleware');
 const passport = require('passport');
 const { newPostControllerPost } = require('../controllers/newPostController');
 const { getAllPosts } = require('../config/queries');
+const { adminLoginPost } = require('../controllers/adminController');
 
 router.get('/', async (req, res) => {
   let user = null;
@@ -62,5 +63,11 @@ router.get('/create-post', isAuth, (req, res) => {
 });
 
 router.post('/create-post', newPostControllerPost);
+
+router.get('/admin', isAuth, (req, res) => {
+  res.render('admin');
+});
+
+router.post('/admin', isAuth, adminLoginPost);
 
 module.exports = router;

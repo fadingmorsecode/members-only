@@ -19,14 +19,19 @@
     <div>
       <% posts.forEach((post) => { %>
       <div>
-        <% if (user && user.membership) { %>
+        <% if (user) { %> <% if (user.membership) { %>
         <p><%= post.name %></p>
-        <% } else { %>
+        <% } %> <% } else { %>
         <p>Club Member</p>
         <% } %>
         <p><%= post.text %></p>
       </div>
       <% }); %>
     </div>
+    <footer>
+      <% if (user && user.admin !== true) { %>
+      <a href="/admin">Admin Login</a>
+      <% } %>
+    </footer>
   </body>
 </html>

@@ -45,6 +45,12 @@ async function getAllPosts() {
   return result.rows;
 }
 
+async function setAdmin(username) {
+  await pool.query('UPDATE users SET admin = true WHERE username = $1', [
+    username,
+  ]);
+}
+
 module.exports = {
   createUser,
   getUser,
@@ -52,4 +58,5 @@ module.exports = {
   setMembership,
   createPost,
   getAllPosts,
+  setAdmin,
 };
