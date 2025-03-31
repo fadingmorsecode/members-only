@@ -19,9 +19,9 @@
     <div>
       <% posts.forEach((post) => { %>
       <div>
-        <% if (user) { %> <% if (user.membership) { %>
+        <% if (user && user.membership) { %>
         <p><%= post.name %></p>
-        <% } %> <% } else { %>
+        <% } else { %>
         <p>Club Member</p>
         <% } %>
         <p><%= post.text %></p>
