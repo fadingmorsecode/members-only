@@ -12,7 +12,7 @@ exports.loginPost = [
     if (!errors.isEmpty()) {
       return res
         .status(400)
-        .render('login', { title: 'Register', errors: errors.array() });
+        .render('login', { title: 'Login', errors: errors.array() });
     }
     next();
   },
