@@ -51,6 +51,10 @@ async function setAdmin(username) {
   ]);
 }
 
+async function deletePost(postId) {
+  await pool.query('DELETE FROM posts WHERE id = $1', [postId]);
+}
+
 module.exports = {
   createUser,
   getUser,
@@ -59,4 +63,5 @@ module.exports = {
   createPost,
   getAllPosts,
   setAdmin,
+  deletePost,
 };

@@ -2,13 +2,14 @@ const router = require('express').Router();
 const registrationController = require('../controllers/registrationController');
 const loginController = require('../controllers/loginController');
 const membershipController = require('../controllers/membershipController');
-const { isAuth } = require('./authMiddleware');
+const { isAuth, isAdmin } = require('./authMiddleware');
 const passport = require('passport');
 const { newPostControllerPost } = require('../controllers/newPostController');
 const { getAllPosts } = require('../config/queries');
 const { adminLoginPost } = require('../controllers/adminController');
 const dayjs = require('dayjs');
 const greetPlugin = require('dayjs-greet');
+const { deletePostPost } = require('../controllers/deletePostController');
 dayjs.extend(greetPlugin);
 
 router.get('/', async (req, res) => {
@@ -77,5 +78,7 @@ router.get('/admin', isAuth, (req, res) => {
 });
 
 router.post('/admin', isAuth, adminLoginPost);
+
+router.post('/delete-post/:postid', isAdmin, deletePostPost);
 
 module.exports = router;
