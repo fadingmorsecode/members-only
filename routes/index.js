@@ -7,15 +7,23 @@ const passport = require('passport');
 const { newPostControllerPost } = require('../controllers/newPostController');
 const { getAllPosts } = require('../config/queries');
 const { adminLoginPost } = require('../controllers/adminController');
+const dayjs = require('dayjs');
+const greetPlugin = require('dayjs-greet');
+dayjs.extend(greetPlugin);
 
 router.get('/', async (req, res) => {
   let user = null;
   const posts = await getAllPosts();
-  console.log(posts);
+  const greeting = dayjs(Date()).greet();
   if (req.user) {
     user = req.user;
   }
-  res.render('index', { title: 'Home', user: user, posts: posts });
+  res.render('index', {
+    title: 'Home',
+    user: user,
+    posts: posts,
+    greeting: greeting,
+  });
 });
 
 router.get('/register', (req, res) => {
