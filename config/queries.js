@@ -40,4 +40,16 @@ async function createPost(firstname, lastname, text) {
   ]);
 }
 
-module.exports = { createUser, getUser, getUserID, setMembership, createPost };
+async function getAllPosts() {
+  const result = await pool.query('SELECT * FROM posts');
+  return result.rows;
+}
+
+module.exports = {
+  createUser,
+  getUser,
+  getUserID,
+  setMembership,
+  createPost,
+  getAllPosts,
+};

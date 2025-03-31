@@ -5,14 +5,16 @@ const membershipController = require('../controllers/membershipController');
 const { isAuth } = require('./authMiddleware');
 const passport = require('passport');
 const { newPostControllerPost } = require('../controllers/newPostController');
+const { getAllPosts } = require('../config/queries');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   let user;
+  const posts = await getAllPosts();
+  console.log(posts);
   if (req.user) {
     user = req.user;
   }
-  console.log(user);
-  res.render('index', { title: 'Home', user: user });
+  res.render('index', { title: 'Home', user: user, posts: posts });
 });
 
 router.get('/register', (req, res) => {

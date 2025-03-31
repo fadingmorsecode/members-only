@@ -12,9 +12,21 @@
     <a href="login">Login</a>
     <% } else { %>
     <a href="create-post">New Post</a>
-    <a href="#">Posts</a>
     <% }%> <% if (user && user.membership === false) { %>
     <a href="/membership">Become a member</a>
     <% } %>
+    <h2>Posts</h2>
+    <div>
+      <% posts.forEach((post) => { %>
+      <div>
+        <% if (user.membership) { %>
+        <p><%= post.name %></p>
+        <% } else { %>
+        <p>Club Member</p>
+        <% } %>
+        <p><%= post.text %></p>
+      </div>
+      <% }); %>
+    </div>
   </body>
 </html>
