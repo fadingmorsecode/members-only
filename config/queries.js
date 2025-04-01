@@ -4,7 +4,8 @@ require('dotenv').config();
 // ensure connection is hidden via env
 
 const pool = new Pool({
-  connectionString: process.env.CONNECTIONSTRING,
+  connectionString:
+    'postgresql://neondb_owner:npg_p24qQWBnUviC@ep-noisy-frost-a5sp669h-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require',
 });
 
 async function createUser(firstname, lastname, email, password) {
