@@ -40,9 +40,12 @@
       </div>
       <% }); %> <% } %>
     </div>
+    <br />
     <footer>
       <% if (user && user.admin !== true) { %>
       <a href="/admin">Admin Login</a>
+      <% } %> <% if (user) { %>
+      <a href="/logout">Logout</a>
       <% } %>
     </footer>
   </body>

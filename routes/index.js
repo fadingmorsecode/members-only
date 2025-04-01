@@ -90,4 +90,13 @@ router.post('/admin', isAuth, adminLoginPost);
 
 router.post('/delete-post/:postid', isAdmin, deletePostPost);
 
+router.get('/logout', isAuth, (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+});
+
 module.exports = router;
