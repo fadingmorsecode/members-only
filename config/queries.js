@@ -1,6 +1,8 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+// ensure connection is hidden via env
+
 const pool = new Pool({
   connectionString: process.env.CONNECTIONSTRING,
 });
