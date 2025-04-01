@@ -4,8 +4,7 @@ require('dotenv').config();
 // ensure connection is hidden via env
 
 const pool = new Pool({
-  connectionString:
-    'postgresql://neondb_owner:npg_p24qQWBnUviC@ep-noisy-frost-a5sp669h-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require',
+  connectionString: process.env.CONNECTIONSTRING,
   ssl: { rejectUnauthorized: false },
 });
 
