@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const pool = new Pool({
   connectionString: process.env.CONNECTIONSTRING,
+  ssl: { rejectUnauthorized: false },
 });
 
 async function createUser(firstname, lastname, email, password) {
