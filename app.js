@@ -36,6 +36,6 @@ app.use(passport.session());
 
 app.use(routes);
 
-app.listen(10000, function () {
+app.listen(10000, '0.0.0.0', function () {
   console.log('App listening on port 10000!');
 });
