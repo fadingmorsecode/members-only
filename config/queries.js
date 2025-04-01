@@ -1,8 +1,8 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
-  connectionString:
-    'postgresql://members-only_owner:npg_8pxad4sQugUc@ep-quiet-hat-a6vvve56-pooler.us-west-2.aws.neon.tech/members-only?sslmode=require',
+  connectionString: process.env.CONNECTIONSTRING,
 });
 
 async function createUser(firstname, lastname, email, password) {
