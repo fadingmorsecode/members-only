@@ -8,13 +8,22 @@ const { newPostControllerPost } = require('../controllers/newPostController');
 const { getAllPosts } = require('../config/queries');
 const { adminLoginPost } = require('../controllers/adminController');
 const dayjs = require('dayjs');
+const advancedFormat = require('dayjs/plugin/advancedFormat');
 const greetPlugin = require('dayjs-greet');
 const { deletePostPost } = require('../controllers/deletePostController');
 dayjs.extend(greetPlugin);
+dayjs.extend(advancedFormat);
 
 router.get('/', async (req, res) => {
   let user = null;
   const posts = await getAllPosts();
+  posts.forEach((post) => {
+    post.formattedTimestamp = dayjs(post.timestamp).format('h:mma');
+    post.formattedDate = dayjs(post.timestamp).format('MMM Do YYYY');
+    console.log(post);
+  });
+  console.log('hji');
+  console.log(posts);
   const greeting = dayjs(Date()).greet();
   if (req.user) {
     user = req.user;

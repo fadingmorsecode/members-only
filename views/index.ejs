@@ -30,7 +30,8 @@
         <% } %>
         <p><%= post.text %></p>
         <% if (user && user.membership || user && user.admin === true) { %>
-        <p><%= post.timestamp %></p>
+        <p><%= post.formattedTimestamp %></p>
+        <p><%= post.formattedDate %></p>
         <% } %> <% if (user && user.admin === true) { %>
         <form action="delete-post/<%=post.id%>" method="post">
           <button type="submit">Delete Post</button>
