@@ -72,6 +72,7 @@ async function searchUsername(username) {
 }
 
 module.exports = {
+  pool,
   createUser,
   getUser,
   getUserID,

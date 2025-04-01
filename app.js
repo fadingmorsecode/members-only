@@ -3,7 +3,7 @@ const expressSession = require('express-session');
 const pgSession = require('connect-pg-simple')(expressSession);
 const routes = require('./routes');
 const passport = require('passport');
-const { connection } = require('./config/queries');
+const { pool } = require('./config/queries');
 require('dotenv').config();
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   expressSession({
     store: new pgSession({
-      pool: connection,
+      pool: pool,
       tableName: 'session',
     }),
     secret: process.env.SECRET,
