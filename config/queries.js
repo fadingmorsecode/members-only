@@ -36,12 +36,12 @@ async function setMembership(username) {
   ]);
 }
 
-async function createPost(firstname, lastname, text) {
+async function createPost(firstname, lastname, title, text) {
   const name = `${firstname} ${lastname}`;
-  await pool.query('INSERT INTO posts (name, text) VALUES ($1, $2)', [
-    name,
-    text,
-  ]);
+  await pool.query(
+    'INSERT INTO posts (name, title, text) VALUES ($1, $2, $3)',
+    [name, text]
+  );
 }
 
 async function getAllPosts() {

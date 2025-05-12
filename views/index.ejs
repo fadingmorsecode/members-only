@@ -28,6 +28,7 @@
         <% } else { %>
         <p>Club Member</p>
         <% } %>
+        <p><%= post.title</p>
         <p><%= post.text %></p>
         <% if (user && user.membership || user && user.admin === true) { %>
         <p><%= post.formattedTimestamp %></p>

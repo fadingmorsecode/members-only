@@ -8,8 +8,10 @@
   <body>
     <h1>Create New Post</h1>
     <form action="/create-post" method="post">
+      <label for="title-input">Title:</label>
+      <input type="text" id="title-input" name="title-input" required />
       <label for="post-text-input">Message:</label>
-      <input type="text" id="post-text-input" name="post-text-input" required />
+      <textarea id="post-text-input" name="post-text-input" required >
       <button type="submit">Create</button>
     </form>
   </body>
